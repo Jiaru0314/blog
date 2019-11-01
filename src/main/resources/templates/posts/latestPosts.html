@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>最新博客</title>
+    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}">
+    <style>
+        .content-wrap {
+            margin: 0 auto;
+            float: none;
+        }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/cool-nav-bar.css" th:href="@{/css/cool-nav-bar.css}">
+</head>
+<body>
+<header th:replace="users/user_fragments :: header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/" th:href="@{/}">首页</a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html" th:href="@{/posts/postEditor}">写文章</a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html" th:href="@{/users/users}">大神列表</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html" th:href="@{/posts/latestPosts}">推荐博客</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/login.html" th:href="@{/login}">登陆</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/register.html" th:href="@{/register}">注册</a>
+            </div>
+
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js" th:src="@{/js/cool-nav-bar.js}"></script>
+</body>
+</html>
+<main id="main" class="main">
+    <div class="main-inner">
+        <!--    博客列表-->
+        <div class="content-wrap">
+            <a href="#" class="btn" th:href="${state} == time ? @{/posts/hotestPosts} : @{/posts/latestPosts}"
+               th:text="${state} ==time ? '按热度排序':'按时间排序'">按时间排序</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div th:each="blog : ${blogs}">
+                <h1 class="post-title">
+                    <a class="post-title-link"
+                       href="/posts/62" th:href="@{/posts/{id}(id=${blog.id})}" th:text="${blog.title}">赵攀</a>
+                </h1>
+                <div class="post-meta">
+                    <time th:text="#{user.time} +${#dates.format(blog.createTime,'yyyy年MM月dd日 HH:mm:ss')}">
+                        发表于2019-06-11
+                    </time>
+                    <span class="post-meta-divider">|</span>
+                    <span class="post-meta-item-text" th:text="#{user.author}">作者：</span>
+                    <a class="post-username" href="#" th:href="@{/users/{id}(id=${blog.user.id})}"
+                       th:text="${blog.user.username}">zhaopan</a>
+                    <span class="post-meta-divider">|</span>
+                    <span class="post-meta-item-text" th:text="#{blog.count}">阅读数：</span>
+                    <span class="post-meta-item-text" th:text="${blog.counts}">1222</span>
+                </div>
+                <div class="post-button text-center">
+                    <a href="/posts/62" th:href="@{/posts/{id}(id=${blog.id})}" class="btn" th:text="#{user.view_all}">阅读全文</a>
+                </div>
+                <footer class="post-footer">
+                    <div class="post-eof"></div>
+                </footer>
+            </div>
+
+        </div>
+    </div>
+</main>
+</body>
+</html>

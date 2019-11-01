@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Microsoft YaHei, "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.site-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    position: fixed;
+    margin: 40px 0 30px 0;
+    top: 0;
+    left: 0 !important;
+    right: 0;
+    z-index: 103;
+    color: #000;
+    background: #fff;
+    transition: all 0.5s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar-container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+nav {
+    float: right;
+    margin-bottom: -20px;
+}
+
+.motto {
+    color: #2e2e2e;
+    float: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 38px;
+    text-decoration: none;
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+}
+
+.nav-item :hover {
+    color: #4183c4;
+}
+
+/*.nav-item-link::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    z-index: -1;*/
+/*    width: 100%;*/
+/*     bottom: 0;*/
+/*    visibility: hidden;*/
+/*    background: #2098d1;*/
+/*    height: 4px;*/
+/*    transition-property: all;*/
+/*    transition-duration: .3s;*/
+/*    transition-timing-function: ease-out;*/
+/*    transform: scale(0);*/
+
+/*}*/
+
+/*.nav-item-link:hover::before {*/
+/*    visibility: visible;*/
+/*    transform: scaleX(1);*/
+/*}*/
+
+
+.nav-item {
+    position: relative;
+    padding: 0;
+    overflow: visible;
+    color: #000;
+    display: inline-block;
+    margin-left: 1.25rem;
+    font-size: 20px;
+}
+
+.nav-item > a {
+    display: block;
+    padding: 10px;
+    color: #000;
+}
+
+.nav-item-link::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #2098d1;
+    height: 4px;
+    transition-property: left, right;
+    transition-duration: .3s;
+    transition-timing-function: ease-out;
+}
+
+.nav-item-link:hover::before {
+    left: 0;
+    right: 0;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+.site-header.site-header-nav-scrolled {
+    margin: 0;
+    background-color: white;
+    box-shadow: 0 0.125em 0.125em 0 rgba(0, 0, 0, 0.125);
+}

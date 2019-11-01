@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>文章管理</title>
+    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}">
+    <style>
+        .posts-manager-wrap {
+            margin: 200px auto;
+            box-sizing: border-box;
+            /*padding: 40px;*/
+            width: 700px;
+            /*background: #fff;*/
+            /*min-height: 700px;*/
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .posts-manager-entry {
+            margin-bottom: 1px;
+            padding: 12px 36px;
+            background: #fff;
+        }
+
+        .posts-manager-entry:hover {
+            background: #f5f6f7;
+        }
+
+        /*.opt-box {*/
+        /*    display: inline;*/
+        /*}*/
+        .opt-box * {
+            float: right;
+            display: none;
+        }
+
+        .posts-manager-entry:hover .opt-box * {
+            display: block;
+        }
+
+        .posts-manager-button-delete {
+            width: 100px;
+            height: 46px;
+            border-width: 0px;
+            border-radius: 3px;
+            background: #ca0c16;
+            cursor: pointer;
+            outline: none;
+            font-family: Microsoft YaHei;
+            color: white;
+            font-size: 17px;
+            vertical-align: top;
+            margin-top: -62px;
+        }
+
+        .posts-manager-button-delete:hover {
+            background-color: #f13f40;
+        }
+
+        .posts-manager-button-modify {
+            width: 100px;
+            height: 46px;
+            border-width: 0px;
+            border-radius: 3px;
+            background: #2680d8;
+            cursor: pointer;
+            outline: none;
+            font-family: Microsoft YaHei;
+            color: white;
+            font-size: 17px;
+            vertical-align: top;
+            margin-top: -62px;
+            margin-right: 105px;
+        }
+
+        .posts-manager-button-modify:hover {
+            background-color: #5599FF;
+        }
+
+        .posts-manager-button-view {
+            width: 100px;
+            height: 46px;
+            border-width: 0px;
+            border-radius: 3px;
+            background: #57ab1b;
+            cursor: pointer;
+            outline: none;
+            font-family: Microsoft YaHei;
+            color: white;
+            font-size: 17px;
+            vertical-align: top;
+            margin-top: -62px;
+            margin-right: 210px;
+        }
+
+        .posts-manager-button-view:hover {
+            background-color: #96b97d;
+        }
+
+        .posts-manager-entry-post-title {
+            cursor: pointer;
+            transition: all;
+            transition-delay: 0s;
+            transition-duration: 0.2s;
+
+        }
+
+        .posts-manager-entry-post-title:hover {
+            color: #4183c4;
+        }
+
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cool-nav-bar.css">
+</head>
+<body>
+<header th:replace="users/user_fragments :: header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/" th:href="@{/}">首页</a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html" th:href="@{/posts/postEditor}">写文章</a>
+            </div>
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html" th:href="@{/users/users}">大神列表</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html" th:href="@{/posts/latestPosts}">推荐博客</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/login.html" th:href="@{/login}">登陆</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/register.html" th:href="@{/register}">注册</a>
+            </div>
+
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js"></script>
+</body>
+</html>
+<main>
+    <div class="posts-manager-wrap">
+        <div class="posts-manager-entry" data-post-id="65" th:each="blog : ${blogs}" th:attr="data-post-id=${blog.id}">
+            <h2>
+                <span class="posts-manager-entry-post-title" th:text="${blog.title}"
+                >同类</span>
+            </h2>
+            <div>
+                <span th:text="${#dates.format(blog.createTime,'yyyy年MM月dd日 HH:mm:ss')}">2019-10-21 08:46:25</span>
+            </div>
+            <div class="opt-box">
+                <button type="button" class="posts-manager-button-view" th:text="#{manage.view}">查看</button>
+                <button type="button" class="posts-manager-button-modify" th:text="#{manage.modify}">修改</button>
+                <button type="button" class="posts-manager-button-delete" th:text="#{manage.delete}">删除</button>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    $(".posts-manager-button-delete").click(function () {
+        let id = $(this).parents(".posts-manager-entry").attr("data-post-id");
+        $.ajax({
+            type: "DELETE",
+            url: "/posts/" + id,
+            async: false,
+            complete: function () {
+                location = "/posts/manage.html";
+            }
+        });
+    });
+    $(".posts-manager-button-view").click(function () {
+        let id = $(this).parents(".posts-manager-entry").attr("data-post-id");
+        location = "/posts/" + id;
+    });
+    $(".posts-manager-button-modify").click(function () {
+        let id = $(this).parents(".posts-manager-entry").attr("data-post-id");
+        location = "/posts/postEditor/" + id;
+    })
+    $(".posts-manager-entry-post-title").click(function () {
+        let id = $(this).parents('.posts-manager-entry').attr("data-post-id");
+        location = "/posts/" + id;
+    });
+
+</script>
+</body>
+</html>

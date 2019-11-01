@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cool-nav-bar.css" th:href="@{/css/cool-nav-bar.css}">
+</head>
+<body>
+<header th:fragment="header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境" th:href="@{/users/index}" th:text="#{index.title}">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/" th:href="@{/users/index}" th:text="#{index.index}">首页</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/12" th:href="@{/users/{id}(id=${session.user.id})}"
+                   th:text="#{index.user_page}">
+                    个人主页
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html" th:href="@{/posts/postEditor}"
+                   th:text="#{index.editor}">写文章</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/manage.html" th:href="@{/posts/manage}"
+                   th:text="#{index.manage_article}">文章管理</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html" th:href="@{/users/users}" th:text="#{index.hotUser}">热门博主</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html" th:href="@{/posts/latestPosts}"
+                   th:text="#{index.recommended}">推荐博客</a>
+            </div>
+
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/logout" th:href="@{/logout}" th:text="#{index.logout}">退出登陆</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js" th:src="@{/js/cool-nav-bar.js}"></script>
+</body>
+</html>
+<main>
+    <span class="slogan">天道酬勤</span>
+</main>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</body>
+</html>

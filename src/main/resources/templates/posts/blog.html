@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${blog.title}">说两句关于jsp的 | 徐中元</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/simditor/styles/simditor.css">
+    <style>
+        .simditor-body {
+            margin: 0 0 20px 0;
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .simditor {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/cool-nav-bar.css">
+</head>
+<body>
+<header th:replace="users/user_fragments :: header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/">首页</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/12">
+                    个人主页
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html">写文章</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/manage.html">文章管理</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html">大神列表</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html">推荐博客</a>
+            </div>
+
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/logout">退出登陆</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js"></script>
+</body>
+</html>
+<main id="main" class="main">
+    <div class="main-inner">
+        <!--    用户个人信息-->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-inner">
+                <a href="/users/7" th:href="@{/users/{id}(id=${blog.user.id})}">
+                    <img class="avatar" src="/img/avatar.jpg" alt="" th:src="@{${blog.user.avatar}}" width="120"
+                         height="120">
+                </a>
+                <a href="/users/7" th:href="@{/users/{id}(id=${blog.user.id})}">
+                    <div class="author-name" th:text="${blog.user.username}">徐中元</div>
+                </a>
+            </div>
+        </aside>
+        <!--    博客具体内容-->
+        <div class="content-wrap">
+            <h1 class="post-title" th:text="${blog.title}">说两句关于jsp的</h1>
+            <div class="post-meta">
+                <time th:text="#{user.time} +${#dates.format(blog.createTime,'yyyy年MM月dd日 HH:mm:ss')}">
+                    发表于2019-06-11
+                </time>
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-text" th:text="#{blog.count}">阅读数：</span>
+                <span class="post-meta-item-text" th:text="${blog.counts}">1222</span>
+            </div>
+            <div class="simditor">
+                <div class="simditor-body" th:utext="${blog.content}"><h3 style="text-align: center;">
+                    <b>JSP高度的可编程性（随意嵌入Java代码）会导致新人忘记了这玩意其实是个</b><span style="color: rgb(227, 55, 55);"><b>模板</b></span>
+                </h3></div>
+            </div>
+        </div>
+        <!--    评论区-->
+        <div>
+
+        </div>
+    </div>
+</main>
+</body>
+</html>

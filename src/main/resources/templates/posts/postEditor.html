@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>写文章</title>
+    <link rel="stylesheet" href="/simditor/styles/simditor.css" th:href="@{/simditor/styles/simditor.css}">
+    <style>
+        .post-title-input-box {
+            width: 400px;
+            height: 40px;
+            color: #424240;
+            margin-right: 20px;
+            text-indent: 15px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .post-post-button {
+            width: 125px;
+            height: 46px;
+            border-width: 0px;
+            border-radius: 3px;
+            background: #1E90FF;
+            cursor: pointer;
+            outline: none;
+            font-family: Microsoft YaHei;
+            color: white;
+            font-size: 17px;
+            vertical-align: top;
+        }
+
+        .post-post-button:hover {
+            background: #5599FF;
+        }
+
+        .simditor {
+            margin-top: 30px;
+        }
+
+        main {
+            padding: 60px;
+            margin-top: 150px;
+        }
+
+        .input-box-button {
+            font-size: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/cool-nav-bar.css" th:href="@{/css/cool-nav-bar.css}">
+</head>
+<body>
+<header th:replace="users/user_fragments :: header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/">首页</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/12">
+                    个人主页
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html">写文章</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/manage.html">文章管理</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html">大神列表</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html">推荐博客</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/logout">退出登陆</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js" th:href="@{/js/cool-nav-bar.js}"></script>
+</body>
+</html>
+<main>
+    <form class="post-post-form">
+        <div class="input-box-button">
+            <input name="title" class="post-title-input-box" type="text" placeholder="输入标题内容"
+                   th:placeholder="#{post.placeholder}"
+                   value="" th:value="${blog.title}==null ? '' :${blog.title}">
+            <button class="post-post-button" type="button" th:text="#{post.publish}">发布文章</button>
+        </div>
+        <textarea id="editor"></textarea>
+    </form>
+</main>
+
+<script>
+    $(function () {
+        var editor = new Simditor({
+            toolbar: [
+                'title', 'bold', 'italic', 'underline', 'strikethrough',
+                'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|', 'link',
+                'image', 'hr', '|', 'alignment'
+            ],
+            textarea: '#editor',
+            placeholder: '',
+            defaultImage: '../simditor/images/logo.png',
+            imageButton: ['upload'],
+        });
+    });
+    $(".post-title-input-box").blur(function () {
+        $(this).css({"border-width": "0", "padding": "3px 2px"});
+    });
+    $(".post-title-input-box").focus(function () {
+        $(this).css({"border-width": "2", "padding": "1px 0px"});
+    });
+    $(".post-post-button").click(function () {
+        let title = $(".post-title-input-box").val();
+        let content = $(".simditor-body").html();
+        let id = [[${blog.id == 0?0:blog.id}]];
+        console.log(id);
+        $.ajax({
+            url: "/posts/postPost",
+            type: "post",
+            async: false,
+            data: {
+                id: id,
+                content: content,
+                title: title
+            },
+            success: function () {
+                var id = [[${session.user.id}]];
+                location = "/users/" + id;
+            }
+        });
+        return true;
+    });
+</script>
+<script src="/simditor/scripts/jquery.min.js"></script>
+<script src="/simditor/scripts/module.js"></script>
+<script src="/simditor/scripts/uploader.js"></script>
+<script src="/simditor/scripts/hotkeys.js"></script>
+<script src="/simditor/scripts/dompurify.js"></script>
+<script src="/simditor/scripts/simditor.js"></script>
+<script src="/simditor/scripts/mobilecheck.js"></script>
+<script src="/simditor/scripts/page-demo.js"></script>
+
+<script th:inline="javascript">
+    $(function () {
+        $(".simditor-placeholder").hide();
+        var content = [[${blog.content}]];
+        $("div.simditor-body > p").replaceWith(content);
+    });
+</script>
+</body>
+</html>

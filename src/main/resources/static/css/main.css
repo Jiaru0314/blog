@@ -1,0 +1,298 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 14px;
+    color: #555;
+    background: #fff;
+    border: 2px solid #555;
+    text-decoration: none;
+    border-radius: 2px;
+    transition-property: background-color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    line-height: 2;
+}
+
+.btn:hover {
+    border-color: #222;
+    color: #fff;
+    background: #222;
+}
+
+.post-title-link {
+    display: inline-block;
+    position: relative;
+    color: #555;
+    border-bottom: none;
+    line-height: 1.2;
+    vertical-align: top;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+.post-title-link::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    background: radial-gradient(circle, #f00, #ff0, #008000);
+}
+
+.post-title {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    text-align: center;
+    font-weight: 400;
+}
+
+.post-title-link:hover::before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.post-button {
+    margin-top: 40px;
+}
+
+.content-wrap {
+    float: right;
+    box-sizing: border-box;
+    padding: 40px;
+    width: 700px;
+    background: #fff;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(255, 255, 255);
+    min-height: 700px;
+    box-shadow: initial;
+    border-radius: initial;
+}
+
+body {
+    position: relative;
+    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 14px;
+    color: #555;
+    background: #f5f7f9;
+}
+
+.main-inner {
+    width: 960px;
+    margin: 0 auto;
+}
+
+main {
+    display: block;
+    margin-top: 180px;
+}
+
+.sidebar {
+    right: auto;
+    bottom: auto;
+    position: static;
+    float: left;
+    width: 240px;
+    background: #f5f7f9;
+    box-shadow: none;
+    top: 0;
+    z-index: 1040;
+}
+
+.avatar {
+    display: block;
+    margin: 0 auto;
+    padding: 2px;
+    max-width: 120px;
+    height: auto;
+    border: 1px solid #eee;
+    opacity: 1;
+}
+
+.author-name {
+    margin: 0;
+    text-align: center;
+    color: #222;
+    font-weight: 600;
+}
+
+.sidebar-inner {
+    box-sizing: border-box;
+    width: 240px;
+    color: #555;
+    background: #fff;
+    box-shadow: initial;
+    border-radius: initial;
+    position: relative;
+    padding: 20px 10px;
+    color: #999;
+    text-align: center;
+}
+
+p {
+    margin: 0 0 20px 0;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.post-eof {
+    display: block;
+    margin: 80px auto 60px;
+    width: 8%;
+    height: 1px;
+    background: #ccc;
+    text-align: center;
+}
+
+.post-meta {
+    margin: 3px 0 60px 0;
+    color: #999;
+    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+
+time {
+    border-bottom: 1px dashed #999;
+    cursor: help;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 20px 0 15px;
+    padding: 0;
+    font-weight: bold;
+    line-height: 1.5;
+    font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.post-meta-divider {
+    margin: 0 0.5em;
+}
+
+.post-username {
+    color: #999;
+    border-bottom: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.user-card-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+}
+
+.user-card {
+    width: 250px;
+    background: white;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #E0E0E0;
+}
+
+.user-card-layer {
+    height: 250px;
+    position: relative;
+}
+
+.user .user, .friend .user-card-avatar {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.user-card-meta {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all .3s ease;
+}
+
+.user-card-meta p {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.user-card-avatar {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.user-card-content {
+    padding: 25px;
+    word-break: break-all;
+    text-align: center;
+}
+
+.user-card-content-title:hover {
+    color: #2196F3;
+}
+
+.user-card-content-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 2;
+    color: #616161;
+    transition: all .15s;
+}
+
+.user {
+    display: block;
+    margin: 0 auto;
+    padding-top: 10px;
+    min-height: calc(100vh - 50px);
+    max-width: 1024px;
+}
+
+body, input, label, select, option, textarea, button, fieldset, legend {
+    font-family: Consolas, Microsoft Jhenghei, Hiragino Sans GB, Microsoft YaHei;
+}
+
+.user-card-layer:hover div {
+    height: 100%;
+}

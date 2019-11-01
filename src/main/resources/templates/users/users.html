@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${session.user.username}+的个人主页">大神列表</title>
+    <link rel="stylesheet" href="../../static/css/main.css" th:href="@{/css/main.css}">
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/cool-nav-bar.css" th:href="@{/css/cool-nav-bar.css}">
+</head>
+<body>
+<header th:replace="users/user_fragments :: header" class="site-header">
+    <div class="nav-bar-container">
+        <a href="/" class="motto" title="学无止境" th:href="@{/users/index}">学无止境</a>
+        <nav>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/" th:href="@{/users/index}">首页</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/12" th:href="@{/users/user}">
+                    个人主页
+                </a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/postEditor.html" th:href="@{/posts/postEditor}">写文章</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/manage.html" th:href="@{/posts/manage}">文章管理</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/users/users.html" th:href="@{/users/users}">大神列表</a>
+            </div>
+            <div class="nav-item">
+                <a class="nav-item-link" href="/posts/latestPosts.html" th:href="@{/posts/latestPosts}">推荐博客</a>
+            </div>
+
+
+            <div class="nav-item">
+                <a class="nav-item-link" href="/logout" th:href="@{/logout}">退出登陆</a>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="/js/cool-nav-bar.js"></script>
+</body>
+</html>
+<main>
+    <div class="user">
+        <div class="user-card-container">
+            <div class="user-card" th:each="u : ${users}">
+                <div class="user-card-layer">
+                    <div class="user-card-meta">
+                        <p th:text="#{users.view}">访问他/她</p>
+                    </div>
+                    <img class="user-card-avatar" src="/img/avatar.jpg"
+                         th:src="@{${u.avatar==null?'/img/avatar.jpg':u.avatar}}">
+                    </img>
+                </div>
+                <div class="user-card-content">
+                    <a class="user-card-content-title"
+                       href="/users/7" th:href="@{/users/{id}(id=${u.id})}" th:text="${u.username}">徐中元</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--            <div class = "main-inner">-->
+    <!--                <div th:each = "service:${users}">-->
+    <!--                    <aside id = "sidebar" class = "sidebar">-->
+    <!--                        <div class = "sidebar-inner">-->
+    <!--                            <a th:href = "@{~/users/{username}(username=${service.getUsername()})}">-->
+    <!--                                <img class = "avatar" src = "/img/avatar.jpg" alt = "" width = "120" height = "120">-->
+    <!--                            </a>-->
+    <!--                            <a th:href = "@{~/users/{username}(username=${service.getUsername()})}">-->
+    <!--                                <div class = "author-name" th:text = "${service.getUsername()}"></div>-->
+    <!--                            </a>-->
+    <!--                        </div>-->
+    <!--                    </aside>-->
+    <!--                </div>-->
+    <!--            </div>-->
+</main>
+</body>
+</html>

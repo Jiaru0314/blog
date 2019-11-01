@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>NIIT博客平台登陆页面</title>
+    <link rel="stylesheet" href="../static/css/login.css" th:href="@{/css/login.css}">
+</head>
+<body>
+<div class="main">
+
+    <div class="title">
+        <span th:text="#{login.title}"></span>
+    </div>
+
+    <div class="title-msg">
+        <span th:text="#{login.tip}"></span>
+    </div>
+
+    <form class="login-form" method="post" novalidate action="/login" th:action="@{/login}">
+        <span></span>
+        <!--输入框-->
+        <div class="input-content">
+            <!--autoFocus-->
+            <div>
+                <input type="text" autocomplete="off"
+                       placeholder="用户名" name="username" required th:placeholder="#{login.username}"/>
+            </div>
+
+            <div style="margin-top: 16px">
+                <input type="password" th:placeholder="#{login.password}"
+                       autocomplete="off" placeholder="登录密码" name="password" required maxlength="32"/>
+            </div>
+        </div>
+
+        <!--登入按钮-->
+        <div style="text-align: center">
+            <button type="submit" class="enter-btn" th:text="#{login.btn}">登录</button>
+        </div>
+        <div class="message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">
+            用户名或密码错误
+        </div>
+        <div class="foor">
+            <div class="left">
+                <span><a href="/" th:href="@{/}" th:text="#{login.toIndex}">首页</a></span>
+            </div>
+
+            <div class="right">
+                <span><a href="/register.html" th:href="@{/register}" th:text="#{login.register}">注册账户</a></span>
+            </div>
+        </div>
+    </form>
+
+    <div class="i18n">
+        <a th:href="@{/login.html(lang='zh_CN')}">中文</a>&nbsp;&nbsp;
+        <a th:href="@{/login.html(lang='en_US')}">English</a>
+    </div>
+
+</div>
+</body>
+</html>
